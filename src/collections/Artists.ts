@@ -16,5 +16,11 @@ export const Artists: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
   ],
 }
