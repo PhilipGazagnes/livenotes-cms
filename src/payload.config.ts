@@ -15,7 +15,10 @@ import { Languages } from './collections/Languages'
 import { Songs } from './collections/Songs'
 import { Agents } from './collections/Agents'
 import { AgentSong } from './collections/AgentSong'
+import { AgentList } from './collections/AgentList'
 import { SongArtist } from './collections/SongArtist'
+import { Lists } from './collections/Lists'
+import { SongList } from './collections/SongList'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,7 +31,19 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Artists, Languages, Songs, Agents, AgentSong, SongArtist],
+  collections: [
+    Users,
+    Media,
+    Artists,
+    Languages,
+    Songs,
+    Agents,
+    AgentSong,
+    AgentList,
+    SongArtist,
+    Lists,
+    SongList,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

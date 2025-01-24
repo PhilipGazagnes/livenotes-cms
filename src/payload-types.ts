@@ -18,7 +18,10 @@ export interface Config {
     songs: Song;
     agents: Agent;
     agent_song: AgentSong;
+    agent_list: AgentList;
     song_artist: SongArtist;
+    lists: List;
+    song_list: SongList;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -32,7 +35,10 @@ export interface Config {
     songs: SongsSelect<false> | SongsSelect<true>;
     agents: AgentsSelect<false> | AgentsSelect<true>;
     agent_song: AgentSongSelect<false> | AgentSongSelect<true>;
+    agent_list: AgentListSelect<false> | AgentListSelect<true>;
     song_artist: SongArtistSelect<false> | SongArtistSelect<true>;
+    lists: ListsSelect<false> | ListsSelect<true>;
+    song_list: SongListSelect<false> | SongListSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -161,12 +167,44 @@ export interface AgentSong {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agent_list".
+ */
+export interface AgentList {
+  id: number;
+  agent: number | Agent;
+  list: number | List;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lists".
+ */
+export interface List {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "song_artist".
  */
 export interface SongArtist {
   id: number;
   song: number | Song;
   artist: number | Artist;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "song_list".
+ */
+export interface SongList {
+  id: number;
+  song: number | Song;
+  list: number | List;
   updatedAt: string;
   createdAt: string;
 }
@@ -206,8 +244,20 @@ export interface PayloadLockedDocument {
         value: number | AgentSong;
       } | null)
     | ({
+        relationTo: 'agent_list';
+        value: number | AgentList;
+      } | null)
+    | ({
         relationTo: 'song_artist';
         value: number | SongArtist;
+      } | null)
+    | ({
+        relationTo: 'lists';
+        value: number | List;
+      } | null)
+    | ({
+        relationTo: 'song_list';
+        value: number | SongList;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -339,11 +389,40 @@ export interface AgentSongSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agent_list_select".
+ */
+export interface AgentListSelect<T extends boolean = true> {
+  agent?: T;
+  list?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "song_artist_select".
  */
 export interface SongArtistSelect<T extends boolean = true> {
   song?: T;
   artist?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lists_select".
+ */
+export interface ListsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "song_list_select".
+ */
+export interface SongListSelect<T extends boolean = true> {
+  song?: T;
+  list?: T;
   updatedAt?: T;
   createdAt?: T;
 }
