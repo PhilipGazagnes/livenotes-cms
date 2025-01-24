@@ -15,6 +15,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@netlify/functions": "^3.0.0",
     "@payloadcms/db-postgres": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
@@ -26,6 +27,7 @@
     "payload": "latest",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "redis": "^4.7.0",
     "sharp": "0.32.6"
   },
   "devDependencies": {
